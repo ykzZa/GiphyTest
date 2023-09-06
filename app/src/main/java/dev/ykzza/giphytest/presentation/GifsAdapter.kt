@@ -15,13 +15,18 @@ import dev.ykzza.giphytest.R
 import dev.ykzza.giphytest.databinding.GifItemViewBinding
 import dev.ykzza.giphytest.domain.Gif
 
-class GifsAdapter : ListAdapter<Gif, GifsAdapter.GifViewHolder>(GifDiffUtil()) {
-    class GifViewHolder(private val binding: GifItemViewBinding) : ViewHolder(binding.root) {
+class GifsAdapter(val onItemClickListener: OnItemClickListener) :
+    ListAdapter<Gif, GifsAdapter.GifViewHolder>(GifDiffUtil()) {
+
+    inner class GifViewHolder(private val binding: GifItemViewBinding) : ViewHolder(binding.root) {
 
         fun bind(gif: Gif) {
             binding.apply {
-                binding.progressBar.visibility = View.VISIBLE
-                Glide.with(binding.root)
+                progressBar.visibility = View.VISIBLE
+                root.setOnClickListener {
+                    onItemClickListener.onItemClick(gif)
+                }
+                Glide.with(root)
                     .load(gif.fixedHeightUrl)
                     .error(R.drawable.ic_error)
                     .listener(object : RequestListener<Drawable> {
@@ -31,7 +36,7 @@ class GifsAdapter : ListAdapter<Gif, GifsAdapter.GifViewHolder>(GifDiffUtil()) {
                             target: Target<Drawable>,
                             isFirstResource: Boolean
                         ): Boolean {
-                            binding.progressBar.visibility = View.INVISIBLE
+                            progressBar.visibility = View.INVISIBLE
                             return false
                         }
 
@@ -42,7 +47,7 @@ class GifsAdapter : ListAdapter<Gif, GifsAdapter.GifViewHolder>(GifDiffUtil()) {
                             dataSource: DataSource,
                             isFirstResource: Boolean
                         ): Boolean {
-                            binding.progressBar.visibility = View.INVISIBLE
+                            progressBar.visibility = View.INVISIBLE
                             return false
                         }
                     })
@@ -63,5 +68,9 @@ class GifsAdapter : ListAdapter<Gif, GifsAdapter.GifViewHolder>(GifDiffUtil()) {
     override fun onBindViewHolder(holder: GifViewHolder, position: Int) {
         val gif = getItem(position)
         holder.bind(gif)
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(gif: Gif)
     }
 }
