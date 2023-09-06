@@ -1,16 +1,16 @@
-package dev.ykzza.giphytest
+package dev.ykzza.giphytest.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import dev.ykzza.giphytest.databinding.FragmentSecondBinding
+import dev.ykzza.giphytest.databinding.FragmentGifDetailBinding
 
 
-class SecondFragment : Fragment() {
+class GifDetailFragment : Fragment() {
 
-    private var _binding: FragmentSecondBinding? = null
+    private var _binding: FragmentGifDetailBinding? = null
     private val binding
         get() =
             _binding ?: throw RuntimeException("FragmentSecondBinding == null")
@@ -19,7 +19,7 @@ class SecondFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        _binding = FragmentGifDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 

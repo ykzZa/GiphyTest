@@ -1,4 +1,4 @@
-package dev.ykzza.giphytest
+package dev.ykzza.giphytest.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

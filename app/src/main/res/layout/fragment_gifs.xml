@@ -4,6 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstFragment">
+    tools:context=".presentation.GifsFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_gifs"
+        app:spanCount="3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:listitem="@layout/gif_item_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
