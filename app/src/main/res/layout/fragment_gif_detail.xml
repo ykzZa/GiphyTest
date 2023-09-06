@@ -6,4 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".presentation.GifDetailFragment">
 
+    <ImageView
+        android:id="@+id/iv_gif"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/iv_gif"
+        app:layout_constraintBottom_toBottomOf="@id/iv_gif"
+        app:layout_constraintStart_toStartOf="@id/iv_gif"
+        app:layout_constraintEnd_toEndOf="@id/iv_gif"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
