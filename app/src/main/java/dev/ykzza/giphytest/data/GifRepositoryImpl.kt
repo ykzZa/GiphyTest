@@ -11,22 +11,28 @@ class GifRepositoryImpl: GifRepository {
         offSetKey: Int
     ): List<Gif> {
         val listGif = mutableListOf<Gif>()
-        val response = apiService.getGifList(
-            API_KEY,
-            QUERY_KEY,
-            LIMIT_KEY,
-            offSetKey,
-            RATING_KEY,
-            LANG_KEY,
-            BUNDLE_KEY
-        )
-        response.body()?.data?.map { data ->
-            val gif = Gif(
-                data.id,
-                data.images.original.url,
-                data.images.fixed_height.url
+        try {
+            val response = apiService.getGifList(
+                API_KEY,
+                QUERY_KEY,
+                LIMIT_KEY,
+                offSetKey,
+                RATING_KEY,
+                LANG_KEY,
+                BUNDLE_KEY
             )
-            listGif.add(gif)
+            if(response.isSuccessful) {
+                response.body()?.data?.map { data ->
+                    val gif = Gif(
+                        data.id,
+                        data.images.original.url,
+                        data.images.fixed_height.url
+                    )
+                    listGif.add(gif)
+                }
+            }
+        } catch (e: Exception) {
+            return listGif
         }
         return listGif
     }

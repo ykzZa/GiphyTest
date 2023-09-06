@@ -16,9 +16,7 @@ class GifsViewModel: ViewModel() {
     private val getGifListUseCase = GetGifListUseCase(repository)
 
     private var offset: Int = 0
-    init {
-        loadGifs()
-    }
+
     fun loadGifs() {
         viewModelScope.launch {
             if(gifList.value == null) {
