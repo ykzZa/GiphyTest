@@ -2,6 +2,8 @@
     <string name="app_name">GiphyTest</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="gifs_fragment_label">Gifs</string>
+    <string name="gif_detail_fragment_label">Gif Detail</string>
+    <string name="grid">Grid</string>
+    <string name="linear">Linear</string>
 </resources>

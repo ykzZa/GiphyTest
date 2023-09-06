@@ -3,26 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/GifsFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
+        android:id="@+id/GifsFragment"
         android:name="dev.ykzza.giphytest.presentation.GifsFragment"
-        android:label="@string/first_fragment_label"
+        android:label="@string/gifs_fragment_label"
         tools:layout="@layout/fragment_gifs">
-
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_GifsFragment_to_GifDetailFragment"
+            app:destination="@id/GifDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
+        android:id="@+id/GifDetailFragment"
         android:name="dev.ykzza.giphytest.presentation.GifDetailFragment"
-        android:label="@string/second_fragment_label"
+        android:label="@string/gif_detail_fragment_label"
         tools:layout="@layout/fragment_gif_detail">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+        <argument
+            android:name="gifUrl"
+            app:argType="string" />
     </fragment>
 </navigation>
