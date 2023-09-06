@@ -1,5 +1,8 @@
 package dev.ykzza.giphytest.presentation
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.Network
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -49,8 +52,26 @@ class GifsFragment : Fragment(), MenuProvider, GifsAdapter.OnItemClickListener {
         layoutManagerType = savedInstanceState?.getInt(LAYOUT_MANAGER_KEY) ?: TYPE_GRID
         setupRecyclerView()
         viewModel.gifList.observe(viewLifecycleOwner) {
-            rvAdapter.submitList(it)
+            if(it.isNullOrEmpty()) {
+                binding.ivNoInternet.visibility = View.VISIBLE
+            } else {
+                rvAdapter.submitList(it)
+                binding.ivNoInternet.visibility = View.INVISIBLE
+            }
         }
+        handleInternetAvailable()
+    }
+
+    private fun handleInternetAvailable() {
+        val connectivityManager =
+            requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val callback = object : ConnectivityManager.NetworkCallback() {
+            override fun onAvailable(network: Network) {
+                super.onAvailable(network)
+                viewModel.loadGifs()
+            }
+        }
+        connectivityManager.registerDefaultNetworkCallback(callback)
     }
 
     private fun setupRecyclerView() {

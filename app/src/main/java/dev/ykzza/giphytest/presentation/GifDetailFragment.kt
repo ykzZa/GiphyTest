@@ -34,34 +34,36 @@ class GifDetailFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.apply {
-            Glide.with(binding.root)
-                .load(args.gifUrl)
-                .listener(object : RequestListener<Drawable> {
-                    override fun onLoadFailed(
-                        e: GlideException?,
-                        model: Any?,
-                        target: Target<Drawable>,
-                        isFirstResource: Boolean
-                    ): Boolean {
-                        binding.progressBar.visibility = View.INVISIBLE
-                        return false
-                    }
+        loadGif()
+    }
 
-                    override fun onResourceReady(
-                        resource: Drawable,
-                        model: Any,
-                        target: Target<Drawable>?,
-                        dataSource: DataSource,
-                        isFirstResource: Boolean
-                    ): Boolean {
-                        binding.progressBar.visibility = View.INVISIBLE
-                        return false
-                    }
-                })
-                .error(R.drawable.ic_error)
-                .into(ivGif)
-        }
+    private fun loadGif() {
+        Glide.with(binding.root)
+            .load(args.gifUrl)
+            .listener(object : RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    binding.progressBar.visibility = View.INVISIBLE
+                    return false
+                }
+
+                override fun onResourceReady(
+                    resource: Drawable,
+                    model: Any,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    binding.progressBar.visibility = View.INVISIBLE
+                    return false
+                }
+            })
+            .error(R.drawable.ic_error)
+            .into(binding.ivGif)
     }
 
     override fun onDestroyView() {
