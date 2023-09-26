@@ -12,10 +12,11 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import dagger.hilt.android.AndroidEntryPoint
 import dev.ykzza.giphytest.R
 import dev.ykzza.giphytest.databinding.FragmentGifDetailBinding
 
-
+@AndroidEntryPoint
 class GifDetailFragment : Fragment() {
 
     private var _binding: FragmentGifDetailBinding? = null

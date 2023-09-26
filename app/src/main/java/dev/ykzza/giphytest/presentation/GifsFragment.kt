@@ -19,10 +19,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import dagger.hilt.android.AndroidEntryPoint
 import dev.ykzza.giphytest.R
 import dev.ykzza.giphytest.databinding.FragmentGifsBinding
 import dev.ykzza.giphytest.domain.Gif
 
+@AndroidEntryPoint
 class GifsFragment : Fragment(), MenuProvider, GifsAdapter.OnItemClickListener {
 
     private var _binding: FragmentGifsBinding? = null

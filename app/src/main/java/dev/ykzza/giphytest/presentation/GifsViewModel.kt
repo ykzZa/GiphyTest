@@ -3,18 +3,19 @@ package dev.ykzza.giphytest.presentation
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.ykzza.giphytest.data.GifRepositoryImpl
+import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.ykzza.giphytest.domain.Gif
+import dev.ykzza.giphytest.domain.GifRepository
 import dev.ykzza.giphytest.domain.usecase.GetGifListUseCase
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class GifsViewModel: ViewModel() {
+@HiltViewModel
+class GifsViewModel @Inject constructor(
+    private val getGifListUseCase: GetGifListUseCase
+): ViewModel() {
 
-    private val repository = GifRepositoryImpl()
     val gifList = MutableLiveData<List<Gif>?>()
-
-    private val getGifListUseCase = GetGifListUseCase(repository)
-
     private var offset: Int = 0
 
     fun loadGifs() {
