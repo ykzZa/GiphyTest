@@ -1,12 +1,14 @@
 package dev.ykzza.giphytest.data
 
-import dev.ykzza.giphytest.data.network.RetrofitBuilder
+import dev.ykzza.giphytest.data.network.ApiService
 import dev.ykzza.giphytest.domain.Gif
 import dev.ykzza.giphytest.domain.GifRepository
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class GifRepositoryImpl: GifRepository {
+@Singleton
+class GifRepositoryImpl @Inject constructor(private val apiService: ApiService): GifRepository {
 
-    private val apiService = RetrofitBuilder.apiService
     override suspend fun getGifList(
         offSetKey: Int
     ): List<Gif> {
